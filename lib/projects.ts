@@ -13,94 +13,49 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "ai-analytics-dashboard",
-    title: "AI Analytics Dashboard",
+    slug: "weather-app",
+    title: "MangEdu Weather Dashboard",
     year: 2025,
     description:
-      "Real-time analytics platform powered by ML models for predictive insights and data visualization.",
-    longDescription: `A comprehensive analytics dashboard built with Next.js and a Python FastAPI backend. Features real-time data visualization, ML-powered predictions, and customizable widgets. Handles 10M+ data points with sub-100ms query response times.
+      "Real-time weather dashboard that lets you search any city and get live conditions powered by OpenWeatherMap.",
+    longDescription: `A clean, real-time weather dashboard built with a secure API proxy so the OpenWeatherMap key is never exposed to the client. Type any city name and get instant current conditions including temperature, humidity, wind speed, and weather descriptions.
 
-Key features include live data streaming via WebSockets, interactive charts with D3.js, role-based access control, and automated anomaly detection alerts. Deployed on AWS with auto-scaling infrastructure that adapts to traffic spikes.`,
-    tech: ["Next.js", "TypeScript", "Python", "FastAPI", "PostgreSQL", "Redis", "WebSockets"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "Full Stack",
-    gradient: "from-violet-600 to-indigo-600",
-  },
-  {
-    slug: "ecommerce-platform",
-    title: "Headless E-Commerce",
-    year: 2025,
-    description:
-      "Headless commerce solution with dynamic product catalog, cart, and Stripe payment integration.",
-    longDescription: `A modern headless e-commerce platform leveraging Next.js App Router and Stripe for payments. Built with a microservices architecture supporting thousands of concurrent users with a 99.9% uptime SLA.
-
-Implements ISR for product pages, edge caching for performance, and a composable checkout flow with 15+ payment methods across 30 countries. Sanity CMS powers the content layer with real-time preview support.`,
-    tech: ["Next.js", "Stripe", "Sanity CMS", "Prisma", "PostgreSQL", "Vercel"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "Full Stack",
-    gradient: "from-rose-500 to-orange-500",
-  },
-  {
-    slug: "design-system",
-    title: "Design System",
-    year: 2024,
-    description:
-      "Accessible, themeable component library with 50+ components and full Storybook documentation.",
-    longDescription: `An enterprise-grade design system built with React and Storybook. Features 50+ fully accessible components following WCAG 2.1 AA standards, dark/light theme support, and comprehensive interactive documentation. Used across 5 internal products by 20+ engineers.
-
-Built on top of Radix UI primitives for rock-solid accessibility, with Tailwind CSS for styling. Includes automated visual regression testing and Chromatic integration for visual diffing on every PR.`,
-    tech: ["React", "TypeScript", "Storybook", "Radix UI", "Tailwind CSS", "Vitest"],
-    liveUrl: "https://example.com",
+Designed with a focus on simplicity and speed — no bloat, just the data you need. The proxy server pattern keeps credentials safe while keeping the frontend lightweight and fast. Deployed on Vercel with zero-config CI/CD.`,
+    tech: ["JavaScript", "HTML", "CSS", "OpenWeatherMap API", "Vercel", "Proxy Server"],
+    liveUrl: "https://weather-app-blush-eight-62.vercel.app/",
     githubUrl: "https://github.com",
     category: "Frontend",
     gradient: "from-cyan-500 to-blue-600",
   },
   {
-    slug: "collab-app",
-    title: "Real-Time Collab",
-    year: 2024,
+    slug: "recipe-app",
+    title: "PantryPro Recipe App",
+    year: 2025,
     description:
-      "WebSocket-powered collaboration tool with live cursors, comments, and version history.",
-    longDescription: `A real-time collaboration platform inspired by Figma and Notion. Implements CRDT algorithms for conflict-free concurrent editing, supports 100+ simultaneous users per document, and stores full revision history with branching support.
+      "Recipe discovery app where every meal feels like home — browse by category, search meals, and save your favourites.",
+    longDescription: `PantryPro is a full-featured recipe discovery application powered by TheMealDB API. Browse hundreds of meals across categories like Beef, Chicken, Dessert, Seafood, and more. Each recipe includes full ingredient lists, step-by-step instructions, and a high-quality photo.
 
-Features include presence indicators, live commenting, keyboard shortcuts, and an offline-first architecture with background sync. Built for teams that need to move fast without stepping on each other's work.`,
-    tech: ["Next.js", "Socket.io", "CRDT", "MongoDB", "AWS S3", "Redis"],
-    liveUrl: "https://example.com",
+Features include a persistent favourites list, category filtering, and a dedicated meal detail page for every recipe. Built with a mobile-first responsive layout and smooth navigation between views. Deployed on Vercel with instant global delivery.`,
+    tech: ["JavaScript", "HTML", "CSS", "TheMealDB API", "Vercel"],
+    liveUrl: "https://recipe-app-opal-xi.vercel.app/",
     githubUrl: "https://github.com",
-    category: "Full Stack",
-    gradient: "from-emerald-500 to-teal-600",
+    category: "Frontend",
+    gradient: "from-rose-500 to-orange-500",
   },
   {
-    slug: "cli-toolkit",
-    title: "CLI Dev Toolkit",
-    year: 2024,
+    slug: "scoundrel-game",
+    title: "Scoundrel Card Game",
+    year: 2025,
     description:
-      "Productivity CLI with project scaffolding, code generation, and automated workflow tools.",
-    longDescription: `A powerful CLI toolkit that accelerates developer workflows. Features project scaffolding with customizable templates, automated testing setup, and CI/CD pipeline configuration. Downloaded 50K+ times on npm.
+      "A browser-based implementation of the Scoundrel solitaire dungeon-crawler card game with full game logic and action log.",
+    longDescription: `A faithful browser implementation of Scoundrel — a solo dungeon-crawler card game played with a standard deck. Each turn you enter a room of four cards: monsters to fight, weapons to pick up, and potions to drink. Choose wisely — one card carries forward to the next room.
 
-Supports 10+ project templates, interactive prompts, and a plugin system for extensibility. Integrates with GitHub Actions, GitLab CI, and Bitbucket Pipelines out of the box.`,
-    tech: ["Node.js", "TypeScript", "Commander.js", "Inquirer", "Plop", "Jest"],
-    liveUrl: "https://npmjs.com",
+Built entirely in vanilla JavaScript with no dependencies, featuring a complete rules engine, health and weapon tracking, an action log for every turn, and a responsive layout that works on desktop and mobile. Deployed on Vercel.`,
+    tech: ["JavaScript", "HTML", "CSS", "Game Logic", "Vercel"],
+    liveUrl: "https://scoundrel-game-inky.vercel.app/",
     githubUrl: "https://github.com",
-    category: "DevTools",
-    gradient: "from-amber-500 to-yellow-500",
-  },
-  {
-    slug: "fitness-app",
-    title: "AI Fitness App",
-    year: 2023,
-    description:
-      "Cross-platform React Native fitness app with AI workout recommendations and health metrics.",
-    longDescription: `A React Native fitness application featuring AI-powered workout planning, real-time heart rate monitoring integration, social challenges, and personalized nutrition tracking. 10K+ active monthly users with a 4.8 App Store rating.
-
-Integrates with Apple HealthKit, Google Fit, and wearable devices. Uses TensorFlow.js for on-device ML inference to protect user privacy. Offline-first architecture with smart background sync.`,
-    tech: ["React Native", "Expo", "TensorFlow.js", "Firebase", "HealthKit", "Redux"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "Mobile",
-    gradient: "from-pink-500 to-rose-600",
+    category: "Game",
+    gradient: "from-violet-600 to-indigo-600",
   },
 ];
 

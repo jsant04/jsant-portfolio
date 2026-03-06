@@ -3,25 +3,71 @@
 import { useEffect, useRef } from "react";
 
 const SKILLS = [
-  "TypeScript", "React", "Next.js", "Node.js", "Python",
-  "PostgreSQL", "Redis", "Docker", "AWS", "GraphQL",
-  "Prisma", "Tailwind CSS", "REST APIs", "CI/CD", "Vitest",
-  "Storybook", "Figma", "Git",
+  "Customer Support", "Technical Support Specialist", "HTML", "CSS", "JavaScript",
+  "Python", "Prompt Engineering", "Vibe Coding", "AI Automation"
 ];
 
 const STATS = [
-  { value: "5+", label: "Years Experience" },
-  { value: "30+", label: "Projects Shipped" },
-  { value: "10+", label: "Happy Clients" },
-  { value: "50K+", label: "npm Downloads" },
+  { value: 5,  suffix: "+",  label: "Years Experience" },
+  { value: 30, suffix: "+",  label: "Projects Shipped" },
+  { value: 10, suffix: "+",  label: "Happy Clients" },
+  { value: 50, suffix: "K+", label: "npm Downloads" },
 ];
 
 const STEPS = [
   { num: "01", title: "Understand", desc: "Deep dive into requirements, user needs, and technical constraints before writing a single line." },
   { num: "02", title: "Design", desc: "Architecture planning, API design, and component hierarchy mapping with the team." },
   { num: "03", title: "Build", desc: "Iterative development with clean, well-tested, and documented code at every step." },
-  { num: "04", title: "Ship", desc: "CI/CD pipelines, performance audits, error monitoring, and post-launch support." },
+  { num: "04", title: "Ship", desc: "Get it live, make sure it runs smoothly, catch any issues early, and stick around to fix what comes up after launch." },
 ];
+
+function CountUp({ target, suffix }: { target: number; suffix: string }) {
+  const elRef = useRef<HTMLSpanElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const el = elRef.current;
+    if (!el) return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        obs.disconnect();
+
+        const duration = 1600;
+        const start = performance.now();
+
+        const tick = (now: number) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = String(Math.floor(eased * target));
+          if (progress < 1) {
+            rafRef.current = requestAnimationFrame(tick);
+          } else {
+            el.textContent = String(target);
+          }
+        };
+
+        rafRef.current = requestAnimationFrame(tick);
+      },
+      { threshold: 0.5 }
+    );
+
+    obs.observe(el);
+    return () => {
+      obs.disconnect();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [target]);
+
+  return (
+    <span className="text-3xl font-black text-lime-400">
+      <span ref={elRef}>0</span>{suffix}
+    </span>
+  );
+}
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -60,33 +106,27 @@ export default function About() {
         <div>
           <h2
             id="about-heading"
-            className="reveal font-black leading-[0.92] tracking-tight text-white mb-8"
-            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+            className="reveal font-black leading-[1.08] tracking-tight text-white mb-8"
+            style={{ fontSize: "clamp(1.75rem, 3.5vw, 3rem)" }}
           >
-            Building the Web,
+            From Technical Support,
             <br />
-            <span className="text-lime-400">One Line</span>
-            <br />
-            at a Time.
+            <span className="text-lime-400">to Building the Web</span>
           </h2>
 
           <p
             className="reveal text-white/50 text-base sm:text-lg leading-relaxed mb-5"
             style={{ transitionDelay: "0.08s" }}
           >
-            I&apos;m a full-stack developer with 5+ years of experience building scalable
-            web applications for startups and enterprises alike. I specialise in
-            React&thinsp;/&thinsp;Next.js on the front end and Node.js or Python on the back
-            end.
+            Technical Support Specialist and Senior Analyst with 5+ years of experience in troubleshooting complex systems, customer support, and technical analysis. 
           </p>
 
           <p
             className="reveal text-white/50 text-base sm:text-lg leading-relaxed"
             style={{ transitionDelay: "0.16s" }}
           >
-            When I&apos;m not writing code I&apos;m contributing to open source, writing
-            technical articles, or exploring the intersection of design and
-            engineering.
+            Coding began as a personal passion and has grown into a career path as I transition into full-time web development. 
+            I am also currently expanding my skills by learning AI engineering.
           </p>
 
           {/* Stats grid */}
@@ -99,7 +139,7 @@ export default function About() {
                 key={stat.label}
                 className="border border-white/[0.08] rounded-2xl p-5 bg-white/[0.025]"
               >
-                <p className="text-3xl font-black text-lime-400">{stat.value}</p>
+                <CountUp target={stat.value} suffix={stat.suffix} />
                 <p className="text-xs font-mono uppercase tracking-widest text-white/38 mt-1">
                   {stat.label}
                 </p>
