@@ -9,7 +9,7 @@ const SKILLS = [
 
 const STATS = [
   { value: 5,  suffix: "+",  label: "Years Experience" },
-  { value: 7, suffix: "+",  label: "Projects Shipped" },
+  { value: 8, suffix: "+",  label: "Projects Shipped" },
   { value: 6, suffix: "+",  label: "Happy Clients" },
   { value: 40, suffix: "+", label: "npm Downloads" },
 ];
