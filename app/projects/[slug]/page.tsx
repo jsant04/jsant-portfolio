@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getProjectBySlug, projects } from "@/lib/projects";
@@ -63,13 +64,22 @@ export default async function ProjectPage({ params }: PageProps) {
         Back to Projects
       </Link>
 
-      {/* Gradient hero banner */}
+      {/* Hero banner — screenshot or gradient fallback */}
       <div
         className={`relative h-56 sm:h-80 lg:h-96 rounded-2xl bg-gradient-to-br ${project.gradient} overflow-hidden mb-14`}
-        aria-hidden="true"
       >
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute bottom-6 left-6 flex items-center gap-3">
+        {project.image && (
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+            className="object-cover object-top"
+            priority
+          />
+        )}
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute bottom-6 left-6 flex items-center gap-3 z-10">
           <span className="text-xs font-mono uppercase tracking-widest text-white/80 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
             {project.category}
           </span>

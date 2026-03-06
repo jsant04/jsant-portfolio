@@ -9,9 +9,9 @@ const SKILLS = [
 
 const STATS = [
   { value: 5,  suffix: "+",  label: "Years Experience" },
-  { value: 30, suffix: "+",  label: "Projects Shipped" },
-  { value: 10, suffix: "+",  label: "Happy Clients" },
-  { value: 50, suffix: "K+", label: "npm Downloads" },
+  { value: 7, suffix: "+",  label: "Projects Shipped" },
+  { value: 6, suffix: "+",  label: "Happy Clients" },
+  { value: 40, suffix: "+", label: "npm Downloads" },
 ];
 
 const STEPS = [

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
@@ -13,10 +14,22 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       className="project-card group flex-shrink-0 w-[290px] sm:w-[350px] lg:w-[390px] rounded-2xl overflow-hidden border border-white/[0.08] bg-white/[0.025] flex flex-col"
       aria-label={`View ${project.title} — ${project.category} project`}
     >
-      {/* Gradient hero */}
+      {/* Preview image / gradient hero */}
       <div
         className={`relative h-52 bg-gradient-to-br ${project.gradient} overflow-hidden`}
       >
+        {/* Screenshot image */}
+        {project.image && (
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            fill
+            sizes="(max-width: 640px) 290px, (max-width: 1024px) 350px, 390px"
+            className="object-cover object-top"
+            loading="lazy"
+          />
+        )}
+
         {/* Subtle overlay */}
         <div className="absolute inset-0 bg-black/20" />
 
@@ -27,10 +40,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </span>
         </div>
 
-        {/* Large number */}
-        <div className="absolute top-4 right-4 text-6xl font-black text-white/10 leading-none select-none tabindex-[-1]">
-          {String(index + 1).padStart(2, "0")}
-        </div>
+        {/* Large number (shown only when no image) */}
+        {!project.image && (
+          <div className="absolute top-4 right-4 text-6xl font-black text-white/10 leading-none select-none">
+            {String(index + 1).padStart(2, "0")}
+          </div>
+        )}
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
