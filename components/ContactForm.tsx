@@ -148,9 +148,9 @@ export default function ContactForm() {
           {/* Contact info */}
           <div className="reveal space-y-4" style={{ transitionDelay: "0.16s" }}>
             <a
-              href="mailto:hello@jsant.dev"
+              href="mailto:nash.santiago04@gmail.com"
               className="flex items-center gap-4 group"
-              aria-label="Send email to hello@jsant.dev"
+              aria-label="Send email to nash.santiago04@gmail.com"
             >
               <div className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center group-hover:border-lime-400/40 transition-colors shrink-0">
                 <svg
@@ -169,7 +169,7 @@ export default function ContactForm() {
                 </svg>
               </div>
               <span className="text-sm text-white/48 group-hover:text-white transition-colors">
-                hello@jsant.dev
+                nash.santiago04@gmail.com
               </span>
             </a>
 
@@ -197,7 +197,7 @@ export default function ContactForm() {
                 </svg>
               </div>
               <span className="text-sm text-white/48">
-                San Francisco, CA · Remote-first
+                Manila, Philippines · Remote-first
               </span>
             </div>
           </div>

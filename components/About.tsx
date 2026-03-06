@@ -9,7 +9,7 @@ const SKILLS = [
 
 const STATS = [
   { value: 5,  suffix: "+",  label: "Years Experience" },
-  { value: 8, suffix: "+",  label: "Projects Shipped" },
+  { value: 7, suffix: "+",  label: "Projects Shipped" },
   { value: 6, suffix: "+",  label: "Happy Clients" },
   { value: 40, suffix: "+", label: "npm Downloads" },
 ];
@@ -34,7 +34,7 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
         if (!entry.isIntersecting) return;
         obs.disconnect();
 
-        const duration = 1600;
+        const duration = 2500;
         const start = performance.now();
 
         const tick = (now: number) => {
