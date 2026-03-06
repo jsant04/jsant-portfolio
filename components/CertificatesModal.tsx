@@ -117,8 +117,40 @@ export default function CertificatesModal({ onClose }: CertificatesModalProps) {
               key={cert.id}
               className="group border border-white/[0.08] rounded-xl overflow-hidden bg-white/[0.02] hover:border-white/[0.16] transition-colors"
             >
-              {/* Gradient strip */}
-              <div className={`h-1.5 bg-gradient-to-r ${cert.gradient}`} />
+              {/* PDF live preview via scaled iframe */}
+              <div className={`relative h-44 bg-gradient-to-br ${cert.gradient} overflow-hidden`}>
+                {/* Scaled-down iframe renders the actual PDF page */}
+                <iframe
+                  src={`${cert.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                  title={`Preview of ${cert.title}`}
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "200%",
+                    height: "200%",
+                    transform: "scale(0.5)",
+                    transformOrigin: "top left",
+                    border: "none",
+                    pointerEvents: "none",
+                    background: "#fff",
+                  }}
+                />
+                {/* Hover overlay: open PDF */}
+                <a
+                  href={cert.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${cert.title} certificate PDF`}
+                  className="absolute inset-0 z-20 flex items-center justify-center bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <span className="text-xs font-mono uppercase tracking-widest text-white border border-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
+                    Open PDF →
+                  </span>
+                </a>
+              </div>
 
               <div className="p-5">
                 {/* Category badge */}
@@ -137,29 +169,31 @@ export default function CertificatesModal({ onClose }: CertificatesModalProps) {
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-xs font-mono text-white/25">{cert.date}</span>
 
-                  <a
-                    href={cert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View credential for ${cert.title}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-lime-400/70 hover:text-lime-400 transition-colors"
-                  >
-                    View
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={cert.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${cert.title} certificate`}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-lime-400/70 hover:text-lime-400 transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
+                      View
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                    <a
+                      href={cert.pdf}
+                      download
+                      aria-label={`Download ${cert.title} certificate`}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-white/35 hover:text-white transition-colors"
+                    >
+                      Download
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
