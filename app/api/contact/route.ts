@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 
 interface ContactPayload {
   name: string;
@@ -34,21 +35,25 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ── Send email (stub — plug in Resend / SendGrid / Nodemailer) ─
-    // Example with Resend:
-    //   const resend = new Resend(process.env.RESEND_API_KEY);
-    //   await resend.emails.send({
-    //     from: "Portfolio <noreply@jsant.dev>",
-    //     to: "hello@jsant.dev",
-    //     subject: `[Portfolio] ${subject}`,
-    //     html: `<p><strong>${name}</strong> (${email}) wrote:</p><p>${message}</p>`,
-    //   });
-
-    console.log("[contact]", {
-      name,
-      email,
-      subject,
-      preview: message.slice(0, 80),
+    // ── Send email via Resend ──────────────────────────────────────
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: "nash.santiago04@gmail.com",
+      replyTo: email,
+      subject: `[Portfolio] ${subject}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+          <h2 style="color:#a3e635">New message from your portfolio</h2>
+          <table style="width:100%;border-collapse:collapse">
+            <tr><td style="padding:8px 0;color:#666;width:80px"><strong>Name</strong></td><td style="padding:8px 0">${name}</td></tr>
+            <tr><td style="padding:8px 0;color:#666"><strong>Email</strong></td><td style="padding:8px 0"><a href="mailto:${email}">${email}</a></td></tr>
+            <tr><td style="padding:8px 0;color:#666"><strong>Subject</strong></td><td style="padding:8px 0">${subject}</td></tr>
+          </table>
+          <hr style="margin:16px 0;border:none;border-top:1px solid #eee"/>
+          <p style="white-space:pre-wrap;line-height:1.6">${message}</p>
+        </div>
+      `,
     });
 
     return NextResponse.json(
