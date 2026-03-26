@@ -30,7 +30,26 @@ Designed with a focus on simplicity and speed — no bloat, just the data you ne
     gradient: "from-cyan-500 to-blue-600",
     image: "https://image.thum.io/get/width/800/noanimate/https://weather-app-blush-eight-62.vercel.app/",
   },
-  // 2 — Local Music Player
+  // 2 — AI Waiter
+  {
+    slug: "ai-waiter",
+    title: "AI Waiter",
+    year: 2025,
+    description:
+      "A full-stack AI restaurant assistant powered by LangGraph Agentic RAG — customers scan a QR code and chat with an AI that knows the entire menu.",
+    longDescription: `AI Waiter is a fully functional MVP of an AI-powered restaurant assistant built with Next.js, FastAPI, and LangGraph Agentic RAG. Customers scan a QR code or open a link to instantly chat with an AI that has deep knowledge of the entire menu — answering questions, handling recommendations, and guiding orders in natural language.
+
+The frontend is a polished Next.js App Router chat interface with typing indicators, quick-reply buttons, and a QR code section for instant table access. The backend is a FastAPI service running a LangGraph RAG workflow: menus are parsed from Excel, embedded with OpenAI Embeddings, and stored in a Supabase pgvector database for semantic retrieval on every query.
+
+A practical showcase of agentic AI architecture — combining vector search, LLM reasoning, and a production-ready full-stack deployment on Vercel and Render.`,
+    tech: ["Next.js", "TypeScript", "FastAPI", "Python", "LangGraph", "RAG", "OpenAI API", "Supabase", "pgvector", "Vercel"],
+    liveUrl: "https://ai-waiter-cyan.vercel.app/",
+    githubUrl: "https://github.com/jsant04/ai-waiter",
+    category: "AI",
+    gradient: "from-orange-500 to-yellow-500",
+    image: "https://image.thum.io/get/width/800/noanimate/https://ai-waiter-cyan.vercel.app/chat",
+  },
+  // 3 — Local Music Player
   {
     slug: "local-music-player",
     title: "Audify — Music Player",
